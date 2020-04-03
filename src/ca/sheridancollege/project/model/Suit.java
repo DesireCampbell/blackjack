@@ -1,5 +1,19 @@
+/*
+    Suit.java
+    Author: Desire Richards-Campbell (991571959)
+    Author: Swaranjit Singh (991577993)
 
-package ca.sheridancollege.project.model;
+    Description
+    Selection of possible categories for BlackjackCards
+*/
+
+package ca.sheridancollege.project.blackjack.model;
+
+/**
+ * Selection of possible categories for BlackjackCards
+ * @author Desire Richards-Campbell (991571959)
+ * @author Swaranjit Singh (991577993)
+ */
 
 public enum Suit {
 	SPADES  ("Spades",  '♠'),
@@ -11,26 +25,24 @@ public enum Suit {
     private char symbol;
 
     /**
-     * 
-     * @return 
+     * Accessor for the name property.
+     * @return The friendly name of the suit, as String.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * 
-     * @return 
+     * Accessor for the symbol property.
+     * @return The unicode symbol for the suit, as character primitive.
      */
     public char getSymbol() {
         return symbol;
     }
 
-
-
     /**
-     * 
-     * @param name
+     * Constructor for enum.
+     * @param name 
      * @param symbol 
      */
     private Suit(String name, char symbol) {
@@ -39,15 +51,11 @@ public enum Suit {
     }
 
     /**
-     * 
-     * @return 
+     * Default String representation of Suit enum.
+     * @return The suit's friendly name, as String.
      */
     @Override
     public String toString() {
         return this.name;
     }
-
-    
-    
-    
 }

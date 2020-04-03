@@ -5,6 +5,10 @@ public class BlackjackPlayer {
 	private GroupOfCards hand;
 	private double balance;
 
+    public BlackjackPlayer() {
+        super();
+    }
+
     /**
      * 
      * @return 
