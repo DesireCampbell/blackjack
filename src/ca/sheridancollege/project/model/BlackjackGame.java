@@ -14,7 +14,7 @@ package ca.sheridancollege.project.model;
  */
 public class BlackjackGame extends Game{
 
-    public BlackjackGame(String givenName) {
+    public BlackjackGame() {
         super("Blackjack");
     }
 

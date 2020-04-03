@@ -1,6 +1,6 @@
 package ca.sheridancollege.project.viewcontroller;
 
-import java.util.ArrayList;
+import ca.sheridancollege.project.model.*;
 
 public class PlayBlackjack {
 
@@ -9,35 +9,25 @@ public class PlayBlackjack {
      */
     public void main() {
 
+        Game blackjack = new BlackjackGame();
+        blackjack.play();
+        
+//"how many players: "
+// > int
+//create [int] players
+//"Player [num] name: "
+
+
+//"Player [name], bet on this round?"
+// > double
+//give player hand with bet
+
+
+
+
+        
     }
 
-    /**
-     *
-     */
-    public PlayBlackjack() {
 
-    }
-
-    /**
-     *
-     */
-    public void play() {
-
-    }
-
-    /**
-     *
-     */
-    public void declareWinner() {
-
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getInstructions() {
-        return "";
-    }
 
 }
