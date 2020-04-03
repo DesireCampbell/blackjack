@@ -5,6 +5,10 @@ public class BlackjackPlayer {
 	private GroupOfCards hand;
 	private double balance;
 
+    /**
+     * 
+     * @return 
+     */
 	public GroupOfCards getHand() {
 		return this.hand;
 	}
@@ -17,6 +21,10 @@ public class BlackjackPlayer {
 		this.hand = hand;
 	}
 
+    /**
+     * 
+     * @return 
+     */
 	public double getBalance() {
 		return this.balance;
 	}
