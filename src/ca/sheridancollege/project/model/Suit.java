@@ -1,5 +1,5 @@
 
-package ca.sheridancollege.project;
+package ca.sheridancollege.project.model;
 
 public enum Suit {
 	SPADES  ("Spades",  '♠'),
