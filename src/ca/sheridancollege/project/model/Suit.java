@@ -7,7 +7,7 @@
     Selection of possible categories for BlackjackCards
 */
 
-package ca.sheridancollege.project.blackjack.model;
+package ca.sheridancollege.project.model;
 
 /**
  * Selection of possible categories for BlackjackCards

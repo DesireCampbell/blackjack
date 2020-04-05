@@ -7,7 +7,7 @@
     Selection of possible values for BlackjackCards
 */
 
-package ca.sheridancollege.project;
+package ca.sheridancollege.project.model;
 
 /**
  * Selection of possible values for BlackjackCards
@@ -27,7 +27,7 @@ public enum Rank {
 	JACK    ("Jack",    "J",    10),
 	QUEEN   ("Queen",   "Q",    10),
 	KING    ("King",    "K",    10),
-	ACE     ("Ace",     "A",    11);
+	ACE     ("Ace",     "A",    1);
 
     private String longName;
     private String shortName;

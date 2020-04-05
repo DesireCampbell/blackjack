@@ -22,13 +22,89 @@ public class BlackjackHand extends GroupOfCards{
        
     public BlackjackHand(double bet) {
         super(0);
-        this.bet = bet;
+        setBet(bet);
     }
-      
-    public BlackjackHand(double bet, ArrayList<Card> cards) {
-        super(0);
-        this.bet = bet;
-        
+
+    /**
+     * Add one card to the cards list
+     * @param newCard 
+     */
+    public void addCard(Card newCard) {
+        this.showCards().add(newCard);
     }
+    
+
+    public double getBet() {
+        return bet;
+    }
+
+    public void setBet(double bet) {
+        bet = (int)(bet * 100)/100.0;
+        if (bet < 0) {
+            throw new IllegalArgumentException("ERROR bet amount cannot be negative");
+        }else{
+            this.bet = bet;
+        }
+    }
+
+    public double getInsuranceBet() {
+        return insuranceBet;
+    }
+
+    public void setInsuranceBet(double insuranceBet) {
+        insuranceBet = (int)(insuranceBet * 100)/100.0;
+        if (insuranceBet < 0) {
+            throw new IllegalArgumentException("ERROR insurance bet amount cannot be negative");
+        }else{
+            this.insuranceBet = insuranceBet;
+        }
+    }
+    /**
+     * Calculates the total value of the hand, including high/low ACEs.
+     * @return The total value of the hand currently, as int.
+     */
+    public int getValue() {
+        //running total for the hand
+        int total = 0;
+        //count the number of ACEs for later
+        int numberOfAces = 0;
+        //sum the (minimum) value of all cards
+        try{
+            for (Card card : this.showCards()) {
+                total += ((BlackjackCard)card).getRank().getValue();
+                //count number of ACEs
+                if ( ((BlackjackCard)card).getRank() == Rank.ACE ) {
+                    numberOfAces++;
+                }
+            }
+        }catch(Exception e){
+            //catch exception for empty arraylist
+        }
+
+        //check the ACEs
+        for (int i = 0; i < numberOfAces; i++) {
+            //for each ACE in hand, check if the total is < 12
+            if (total < 12) {
+                //convert ACE from 1 to 11
+                total += 10;
+            }
+        }
+        //return the total
+        return total;
+    }
+
+    @Override
+    public String toString() {
+        //A hand is cards, total value, bet and insurance bet
+        return String.format("%s %d $%.2f $%.2f", 
+                this.showCards(), this.getValue(), 
+                this.getBet(), this.getInsuranceBet());
+    }
+    
+    
+    
+    
+    
+    
 
 }//end of class BlackjackHand()

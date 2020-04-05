@@ -19,21 +19,51 @@ public class BlackjackGame extends Game{
         super("Blackjack");
         //
     }
+    
+    /**
+     * Returns the Dealer player
+     * @return the Dealer player, or null if no dealer found.
+     */
+    public Player getDealer() {
+        //The Dealer should be last player in the list, so we'll iterate 
+        // backwards through the list until we find a Dealer object:
+        for (int i = this.getPlayers().size()-1; i >= 0; i--) {
+            if(this.getPlayers().get(i) instanceof BlackjackDealer){
+                return this.getPlayers().get(i);
+            }
+        }
+        return null;
+    }
+
 
     /**
      * Initiates basic game loop.
      */
     @Override
     public void play() {
-        
-        
-        
-        
+
     }
 
     @Override
     public void declareWinner() {
         
     }
+
+    @Override
+    public String toString() {
+        //A game is made up of players, so print all the players:
+        String s = "";
+        for (Player player : this.getPlayers()) {
+            if (player instanceof BlackjackDealer) {
+                s += (BlackjackDealer)player + "\n";
+            }else{
+                s += (BlackjackPlayer)player + "\n";
+            }
+        }
+        return s;
+    }
+    
+    
+    
 
 }//end of class BlackjackGame()
