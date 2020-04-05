@@ -1,19 +1,29 @@
 package ca.sheridancollege.project.model;
 
-public class BlackjackDealer {
+public class BlackjackDealer extends BlackjackPlayer {
 
-	private GroupOfCards deck;
-
-	public GroupOfCards getDeck() {
-		return this.deck;
+	private BlackjackPack pack;
+    
+    /**
+     * 
+     */
+    public BlackjackDealer() {
+        //always the same name
+        super("the dealer");
+        //generate the pack, six decks
+        this.setPack(new BlackjackPack(6));
+    }
+    
+	public BlackjackPack getPack() {
+		return this.pack;
 	}
 
 	/**
 	 * 
-	 * @param deck
+     * @param pack
 	 */
-	public void setDeck(GroupOfCards deck) {
-		this.deck = deck;
+	public void setPack(BlackjackPack pack) {
+		this.pack = pack;
 	}
 
 }

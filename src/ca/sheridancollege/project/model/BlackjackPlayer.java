@@ -1,19 +1,26 @@
 package ca.sheridancollege.project.model;
 
-public class BlackjackPlayer {
+public class BlackjackPlayer extends Player{
 
-	private GroupOfCards hand;
+	private BlackjackHand hand;
 	private double balance;
 
-    public BlackjackPlayer() {
-        super();
+    /**
+     * Constructor for Blackjack Player
+     * @param name 
+     */
+    public BlackjackPlayer(String name) {
+        super(name);
+        //new player alwasy start with default balance
+        balance = 100.0;
+        
     }
 
     /**
      * 
      * @return 
      */
-	public GroupOfCards getHand() {
+	public BlackjackHand getHand() {
 		return this.hand;
 	}
 
@@ -21,7 +28,7 @@ public class BlackjackPlayer {
 	 * 
 	 * @param hand
 	 */
-	public void setHand(GroupOfCards hand) {
+	public void setHand(BlackjackHand hand) {
 		this.hand = hand;
 	}
 
@@ -40,5 +47,10 @@ public class BlackjackPlayer {
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
+
+    @Override
+    public void play() {
+        
+    }
 
 }

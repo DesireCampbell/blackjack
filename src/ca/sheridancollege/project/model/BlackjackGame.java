@@ -4,7 +4,7 @@
     Date: 02 Apr. 2020
 
     Description
-    [Description about the class]
+    Models a game of Blackjack with Players, Hands of Cards, etc.
 */
 package ca.sheridancollege.project.model;
 
@@ -15,11 +15,19 @@ package ca.sheridancollege.project.model;
 public class BlackjackGame extends Game{
 
     public BlackjackGame() {
+        //set the name of the game in the parent object
         super("Blackjack");
+        //
     }
 
+    /**
+     * Initiates basic game loop.
+     */
     @Override
     public void play() {
+        
+        
+        
         
     }
 
