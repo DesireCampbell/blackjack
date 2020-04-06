@@ -18,12 +18,13 @@ public class GroupOfCards
 {
    
     //The group of cards, stored in an ArrayList
-    private ArrayList <Card> cards;
+    private ArrayList<Card> cards;
     private int size;//the size of the grouping
     
     public GroupOfCards(int givenSize)
     {
         size = givenSize;
+        this.cards = new ArrayList();
     }
     
     /**
@@ -33,6 +34,14 @@ public class GroupOfCards
     public ArrayList<Card> showCards()
     {
         return cards;
+    }
+    
+    /**
+     * Added because there's no was to modify cards list otherwise?
+     * @param cards 
+     */
+    public void setCards(ArrayList<Card> cards){
+        this.cards = cards;
     }
     
     public void shuffle()

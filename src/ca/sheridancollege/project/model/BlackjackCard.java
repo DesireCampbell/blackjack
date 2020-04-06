@@ -6,6 +6,16 @@ public class BlackjackCard extends Card {
     private Suit suit;
 
     /**
+     * 
+     * @param rank
+     * @param suit 
+     */
+    public BlackjackCard(Rank rank, Suit suit) {
+        this.rank = rank;
+        this.suit = suit;
+    }
+
+    /**
      *
      * @return
      */
@@ -51,7 +61,7 @@ public class BlackjackCard extends Card {
      *
      * @return
      */
-    public char getUnicodeCardFace() {
+    public String getUnicodeCardFace() {
         // return char in format: ((char)'\u1F0A0')
         // u1F0 + suit + rank
         /**
@@ -83,7 +93,7 @@ public class BlackjackCard extends Card {
          *     A0   Back of card
          */
         
-        return this.rank.getSymbol() + " of " + this.suit.getSymbol();
+        return this.rank.getShortName() + " of " + this.suit.getSymbol();
 
     }
 
@@ -91,10 +101,11 @@ public class BlackjackCard extends Card {
      *
      * @return
      */
-    public char getUnicodeCardBack() {
-        return ((char) '\uF0A0');
+    public String getUnicodeCardBack() {
+        return "\uF0A0";
         //return 🂠;
 
     }
+
 
 }
