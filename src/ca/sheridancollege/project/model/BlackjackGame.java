@@ -72,7 +72,7 @@ public class BlackjackGame extends Game{
     /**
      * The four options for a player's turn HIT, DOUBLE, SPLIT, STAND
      */
-    public void hit(BlackjackPlayer player, BlackjackHand hand) {
+    public void hit(BlackjackHand hand) {
         try {
             //Dealer gives next card from pack to player
             hand.addCard(this.getDealer().dealCard());
@@ -94,11 +94,11 @@ public class BlackjackGame extends Game{
             //double bet
             hand.setBet(hand.getBet() * 2);
             //hit
-            this.hit(player, hand);
+            this.hit( hand);
             //stand
             this.stand(player, hand);
         }
-        this.hit(player, hand);
+        this.hit( hand);
         
     }
     
@@ -122,14 +122,14 @@ public class BlackjackGame extends Game{
                 throw new Exception("something failed during split pair: hand values aren't equal");
             }
             //get a new card for each hand right away
-            this.hit(player, hand);
-            this.hit(player, newHand);
+            this.hit(hand);
+            this.hit(newHand);
             //now both hands should have two cards each
             if (hand.showCards().size() == 2 && newHand.showCards().size() == 2) {
                 throw new Exception("something failed during split pair: hands aren't both two cards each");
             }
         }
-        this.hit(player, hand);
+        this.hit(hand);
     }
     
     public void stand(BlackjackPlayer player, BlackjackHand hand) {
