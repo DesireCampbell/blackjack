@@ -104,6 +104,33 @@ public class BlackjackHand extends GroupOfCards{
                 allCards, this.getValue(), 
                 this.getBet(), this.getInsuranceBet());
     }
+
+
+    /**
+     * Compares hand to another hand, returns true if both hands have same value
+     * or both hands have bust.
+     * @param otherHand
+     * @return 
+     */
+    public boolean equals(BlackjackHand otherHand) {
+        if (this == otherHand) {
+            //same mem ref
+            return true;
+        }
+        if (otherHand == null) {
+            //otherHand is null
+            return false;
+        }
+        //compare values
+        if (this.getValue() > 21 && otherHand.getValue() > 21) {
+            return true;
+        }else if (this.getValue() != otherHand.getValue()) {
+            return false;
+        }
+        return true;
+    }
+    
+    
     
     
     
