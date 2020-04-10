@@ -53,6 +53,11 @@ public class BlackjackGame extends Game{
         
     }
 
+    //TODO: instead of pulling toString()s from each object, create single table method for whole game (also for each player?)
+    /**
+     * 
+     * @return 
+     */
     @Override
     public String toString() {
         //A game is made up of players, so print all the players:
@@ -92,18 +97,19 @@ public class BlackjackGame extends Game{
         }else if (player.getBalance() < hand.getBet()) {
             //must have enough money to double bet
             throw new Exception(player.getPlayerID() +"'s balance too low to double down");
+        }else if (hand.getValue() < 9 || hand.getValue() > 11) {
+            //hand value out of range
+            throw new Exception(player.getPlayerID() +"'s hand total must be 9, 10, or 11 to double down");
         }else{
             //decrease player balance
             player.setBalance(player.getBalance() - hand.getBet());
             //double bet
             hand.setBet(hand.getBet() * 2);
             //hit
-            this.hit( hand);
+            this.hit(hand);
             //stand
             this.stand(player, hand);
         }
-        this.hit( hand);
-        
     }
     
     public void splitPair(BlackjackPlayer player, BlackjackHand hand) throws Exception {
@@ -114,6 +120,9 @@ public class BlackjackGame extends Game{
         }else if (player.getBalance() < hand.getBet()) {
             //must have enough money to double bet
             throw new Exception(player.getPlayerID() +"'s balance too low to split pair");
+        }else if( ((BlackjackCard)hand.showCards().get(0)).getRank() != ((BlackjackCard)hand.showCards().get(1)).getRank() ){
+            //ranks do not match
+            throw new Exception("Both cards in "+ player.getPlayerID() +"'s hand must be the same rank to split pair");
         }else{
             //decrease player balance
             player.setBalance(player.getBalance() - hand.getBet());
@@ -121,6 +130,8 @@ public class BlackjackGame extends Game{
             BlackjackHand newHand = new BlackjackHand(hand.getBet());
             //move card to new hand
             newHand.addCard(hand.showCards().remove(1));
+            //give new hand to current player
+            player.addHand(newHand);
             //now both hand and newHand have the same bet and one card each
             if (!hand.equals(newHand)) {
                 throw new Exception("something failed during split pair: hand values aren't equal");
@@ -131,13 +142,14 @@ public class BlackjackGame extends Game{
             //now both hands should have two cards each
             if (hand.showCards().size() == 2 && newHand.showCards().size() == 2) {
                 throw new Exception("something failed during split pair: hands aren't both two cards each");
+                
             }
         }
         this.hit(hand);
     }
     
     public void stand(BlackjackPlayer player, BlackjackHand hand) {
-        //global flag?
+        //global flag? just part of the controller?
     }
     
 
