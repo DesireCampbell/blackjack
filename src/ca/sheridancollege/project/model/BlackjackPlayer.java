@@ -24,7 +24,7 @@ public class BlackjackPlayer extends Player{
     
     
     /**
-     * Get all player hands
+     * Get all player hands as ArrayList of Hands
      * @return 
      */
 	public ArrayList<BlackjackHand> getHands() {
@@ -77,11 +77,12 @@ public class BlackjackPlayer extends Player{
     /**
      * obtains a new card
      */
+    /*
     public void getCard() {
         //find dealer object
         //call dealer.dealCard()
     }
-
+    */
 
 
     /**
