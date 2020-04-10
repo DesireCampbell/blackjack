@@ -69,7 +69,7 @@ public class PlayBlackjack {
                 }
                 //set bet to hand:
                 BlackjackHand newHand = new BlackjackHand(bet);
-                System.out.println(newHand);
+                //System.out.println(newHand);
                 player.addHand(newHand);
             }
         }
@@ -81,8 +81,8 @@ public class PlayBlackjack {
             for (Player o : blackjack.getPlayers()) {
                 //downcast player
                 BlackjackPlayer player = (BlackjackPlayer)o;
-                BlackjackDealer dealer = (BlackjackDealer)(blackjack.getDealer());
-                player.getCurrentHand().addCard(dealer.dealCard());
+                blackjack.getDealer().dealCard(player);
+                System.out.println(player.getPlayerID() +" "+ player.getCurrentHandIndex() +" "+ player.getCurrentHand() );
             }
         }
 
@@ -93,6 +93,7 @@ public class PlayBlackjack {
         
         // BEFORE FIRST TURN ///////////////////////////////////////////////////
         
+        //
         
 
         
@@ -106,7 +107,50 @@ public class PlayBlackjack {
             BlackjackPlayer player = (BlackjackPlayer)o;
             //loop through every hand
             for (BlackjackHand hand : player.getHands()) {
-                
+                //check the hand for next steps:
+                ArrayList<String> availableActions = new ArrayList();
+                String prompt = "Choose an action: ";
+                    
+                if (hand.getValue() > 21) {
+                    //bust
+                }else if (hand.getValue() == 21) {
+                    //force stand
+                }else {
+                    //can stand()
+                    availableActions.add("stand");
+                    prompt += "Stand";
+                    //can hit()
+                    availableActions.add("hit");
+                    prompt += ", Hit";
+                    if (hand.showCards().size() == 2) {
+                        if (hand.getValue() >= 9 && hand.getValue() <= 11) {
+                            //can doubledown()
+                            availableActions.add("double");
+                            prompt += ", Double Down";
+                        }
+                        if ( ((BlackjackCard)(hand.showCards().get(0))).getRank() == ((BlackjackCard)(hand.showCards().get(1))).getRank() ) {
+                            //can splitpairs()
+                            availableActions.add("split");
+                            prompt += ", Split Pairs";
+                        }
+                    }
+                    
+                    //prompt user for input
+                    String userAction = "";
+                    while (!availableActions.contains(userAction)) {
+                        userAction = readUserString(prompt).toLowerCase();
+                        switch (userAction) {
+                            case "stand": player.stand(); break;
+                            case "hit": player.hit(); break;
+                            case "double": player.doubleDown(); break;
+                            case "split": player.splitPair(); break;
+                            default: System.out.println("Command not recognised. ");
+                        }
+                    }
+                    
+                    
+                    
+                }
             }
         }
         

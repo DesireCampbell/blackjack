@@ -24,12 +24,12 @@ public class BlackjackGame extends Game{
      * Returns the Dealer player
      * @return the Dealer player, or null if no dealer found.
      */
-    public Player getDealer() {
+    public BlackjackDealer getDealer() {
         //The Dealer should be last player in the list, so we'll iterate 
         // backwards through the list until we find a Dealer object:
         for (int i = this.getPlayers().size()-1; i >= 0; i--) {
             if(this.getPlayers().get(i) instanceof BlackjackDealer){
-                return this.getPlayers().get(i);
+                return (BlackjackDealer)(this.getPlayers().get(i));
             }
         }
         return null;
@@ -42,6 +42,7 @@ public class BlackjackGame extends Game{
     @Override
     public void play() {
 
+        //
     }
 
     @Override

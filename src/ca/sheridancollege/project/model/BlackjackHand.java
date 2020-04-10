@@ -96,10 +96,17 @@ public class BlackjackHand extends GroupOfCards{
     @Override
     public String toString() {
         //A hand is cards, total value, bet and insurance bet
+        String allCards ="";
+        for (Card card : this.showCards()) {
+            allCards += "["+ card +"]";
+        }
         return String.format("%s %d $%.2f $%.2f", 
-                this.showCards(), this.getValue(), 
+                allCards, this.getValue(), 
                 this.getBet(), this.getInsuranceBet());
     }
+    
+    
+    
     
     
     

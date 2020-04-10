@@ -27,9 +27,14 @@ public class BlackjackDealer extends BlackjackPlayer {
 		this.pack = pack;
 	}
     
-    public BlackjackCard dealCard() {
+    /**
+     * Takes the first card from the Pack and adds it to the specified players'
+     * current hand.
+     * @param player the player receiving the card
+     */
+    public void dealCard(BlackjackPlayer player) {
         //remove the first card from the pack and return it.
-        return (BlackjackCard)(this.pack.showCards().remove(0));
+        player.getCurrentHand().addCard(this.pack.showCards().remove(0));
     }
     
     @Override
