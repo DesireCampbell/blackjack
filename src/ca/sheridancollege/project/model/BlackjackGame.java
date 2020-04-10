@@ -56,6 +56,10 @@ public class BlackjackGame extends Game{
     @Override
     public String toString() {
         //A game is made up of players, so print all the players:
+        //1234567890123456789012345678901234567890
+        //player name ($000.00):  
+        //00 [A♥][5♥][10♥][3♥] $000.00 ($00.00)
+        //----------------------------------------
         String s = "";
         for (Player player : this.getPlayers()) {
             if (player instanceof BlackjackDealer) {

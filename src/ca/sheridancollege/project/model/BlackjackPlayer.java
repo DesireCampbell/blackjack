@@ -119,11 +119,17 @@ public class BlackjackPlayer extends Player{
 
     @Override
     public String toString() {
+        //1234567890123456789012345678901234567890
+        //player name ($000.00):  
+        // hands \n
+        //----------------------------------------
+        
         //A player is made from a Name, a balance, and his hands:
-        String s = this.getPlayerID() +" ("+ this.getBalance() +"): ";
+        String s = String.format("%s ($%.2f):"+"\n", this.getPlayerID(), this.getBalance());
         for (BlackjackHand hand : this.getHands()) {
             s += hand +"\n";
         }
+        s += "----------------------------------------";
         return s;
     }
     

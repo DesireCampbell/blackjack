@@ -17,23 +17,36 @@ import java.util.ArrayList;
 public class BlackjackPack extends GroupOfCards{
 
     public BlackjackPack(int numDecks) {
-        super(numDecks*52);
+        super(numDecks * 52);
         //generate decks
         ArrayList<Card> newCards = new ArrayList();
         for (int i = 0; i < numDecks; i++) {
-            System.out.println("Deck #"+ (i+1));
-            //generate whole deck
+            //generate one whole deck
             for (Suit suit : Suit.values()) {
                 for (Rank rank : Rank.values()) {
                     BlackjackCard card = new BlackjackCard(rank,suit);
-                    //System.out.println("\t"+ card);
                     newCards.add(card);
                 }
             }
         }
-        super.setCards(newCards);
+        this.setCards(newCards);
         //shuffle whole pack
-        super.shuffle();
+        this.shuffle();
     }
+
+    @Override
+    public String toString() {
+        String s = "";
+        for (int i = 0; i < this.showCards().size(); i++) {
+            s += "["+ this.showCards().get(i) +"]"+"\t";
+            if (i%8 == 0) {
+                s += "\n";
+            }
+        }
+        return s;
+    }
+    
+    
+    
 
 }//end of class BlackjackPack()

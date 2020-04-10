@@ -89,6 +89,8 @@ public class PlayBlackjack {
             }
         }
 
+        
+        System.out.println("");
         System.out.println(blackjack);//testing method()
         
         

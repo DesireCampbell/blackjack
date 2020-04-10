@@ -46,11 +46,17 @@ public class BlackjackDealer extends BlackjackPlayer {
 
     @Override
     public String toString() {
+        //1234567890123456789012345678901234567890
+        //player name ($000.00):  
+        //00 [A♥][5♥][10♥][3♥] $000.00 ($00.00)
+        //----------------------------------------
+
         //A Dealer doesn't need to show balance
-        String s = this.getPlayerID() +": ";
+        String s = this.getPlayerID() +":"+"\n";
         for (BlackjackHand hand : this.getHands()) {
             s += hand +"\n";
         }
+        s += "----------------------------------------";
         return s;
     }
      

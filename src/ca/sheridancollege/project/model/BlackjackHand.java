@@ -95,14 +95,30 @@ public class BlackjackHand extends GroupOfCards{
 
     @Override
     public String toString() {
-        //A hand is cards, total value, bet and insurance bet
-        String allCards ="";
+        //1234567890123456789012345678901234567890
+        //player name ($000.00):  
+        //00 [A♥][5♥][10♥][3♥] $000.00 ($00.00)
+        //----------------------------------------
+
+        //A hand is total value, individual cards, bet and insurance bet
+        
+        //value (two digits)
+        String s = String.format("\t%-2d  ", this.getValue());
+        
+        // + all cards
         for (Card card : this.showCards()) {
-            allCards += "["+ card +"]";
+            s += "["+ card +"]";
         }
-        return String.format("%s %d $%.2f $%.2f", 
-                allCards, this.getValue(), 
-                this.getBet(), this.getInsuranceBet());
+        
+        //only show bets if they are greater than $0
+        if (this.getBet() > 0) {
+            s += String.format("    $%.2f ",this.getBet());
+        }
+        if (this.getInsuranceBet() > 0) {
+            s += String.format("($%.2f)",this.getInsuranceBet());
+        }
+        
+        return s;
     }
 
 
