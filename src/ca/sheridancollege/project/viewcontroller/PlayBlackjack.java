@@ -51,7 +51,10 @@ public class PlayBlackjack {
         //loop through all players //bet amount? //decrease balance //create empty hand
         for (Player o : blackjack.getPlayers()) {
             if(o instanceof BlackjackDealer){
-                //skip the dealer, he doesn't bet.
+                //dealer doesn't have a real bet
+                BlackjackDealer dealer = (BlackjackDealer)o;
+                BlackjackHand newHand = new BlackjackHand(0.0);
+                dealer.addHand(newHand);
             }else{
                 //downcast player object
                 BlackjackPlayer player = (BlackjackPlayer)o;
@@ -74,26 +77,30 @@ public class PlayBlackjack {
             }
         }
         
-        //now players have bets, deal cards
+        //now players have bets
         //each player is dealt one card, then each is dealt another
 
         for (int i = 0; i < 2; i++) {
             for (Player o : blackjack.getPlayers()) {
                 //downcast player
                 BlackjackPlayer player = (BlackjackPlayer)o;
-                blackjack.getDealer().dealCard(player);
-                System.out.println(player.getPlayerID() +" "+ player.getCurrentHandIndex() +" "+ player.getCurrentHand() );
+                //players only have one hand each, hit once
+                blackjack.hit(player.getHands().get(0));
             }
         }
 
-        //printAllPlayers(blackjack,"End of new Hand betting and dealing"); //testing method()
+        System.out.println(blackjack);//testing method()
         
         
         
         
         // BEFORE FIRST TURN ///////////////////////////////////////////////////
         
-        //
+        //check dealer hand for possible natural
+        
+        //prompt players for insurance bets
+        
+        //check daler hand value
         
 
         
@@ -102,6 +109,7 @@ public class PlayBlackjack {
         // PLAYER TURNS ////////////////////////////////////////////////////////
         
         //loop through every player
+        /*
         for (Player o : blackjack.getPlayers()) {
             //downcast to BlackjackPlayer
             BlackjackPlayer player = (BlackjackPlayer)o;
@@ -153,6 +161,7 @@ public class PlayBlackjack {
                 }
             }
         }
+        */
         
         
         
