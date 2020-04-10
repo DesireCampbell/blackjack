@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class BlackjackPlayer extends Player{
 
 	private ArrayList<BlackjackHand> hands;
-    private int currentHandIndex = 0;
+    //private int currentHandIndex = 0;
 	private double balance = 0.0;
 
     /**
@@ -31,21 +31,16 @@ public class BlackjackPlayer extends Player{
 		return this.hands;
 	}
 
-    /**
-     * Get the hand currently in play
-     * @return 
-     */
+
+    /*
 	public BlackjackHand getCurrentHand() {
 		return this.hands.get(currentHandIndex);
 	}
 
-    /**
-     * get a specific player hand
-     * @return 
-     */
 	public BlackjackHand getHandAtIndex(int index) {
 		return this.hands.get(index);
     }
+    */
     
     /**
      * Add a new hand to the player
@@ -59,7 +54,7 @@ public class BlackjackPlayer extends Player{
     }
 
     
-    
+    /*
     public int getCurrentHandIndex() {
         return currentHandIndex;
     }
@@ -76,6 +71,7 @@ public class BlackjackPlayer extends Player{
     public void setToNextHandIndex() {
         setCurrentHandIndex(currentHandIndex + 1);
     }
+    */
     
     
     /**
@@ -118,31 +114,14 @@ public class BlackjackPlayer extends Player{
     
     
     
-    /**
-     * The four options for a player's turn HIT, DOUBLE, SPLIT, STAND
-     */
-    public void hit() {
-        
-    }
-    
-    public void doubleDown() {
-        
-    }
-    
-    public void splitPair() {
-        
-    }
-    
-    public void stand() {
-        
-    }
+
     
 
     @Override
     public String toString() {
         //A player is made from a Name, a balance, and his hands:
         String s = this.getPlayerID() +" ("+ this.getBalance() +"): ";
-        for (BlackjackHand hand : hands) {
+        for (BlackjackHand hand : this.getHands()) {
             s += hand +"\n";
         }
         return s;
