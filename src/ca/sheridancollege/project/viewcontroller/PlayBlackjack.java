@@ -25,9 +25,6 @@ public class PlayBlackjack {
         
         // SET UP PLAYERS //////////////////////////////////////////////////////
         
-        System.out.println("--------------------------------------------------------------------------------");
-        System.out.println(" SET UP PLAYERS ");
-        
         
         //prompt for number of players:
         int numPlayers = readUserInt("How many players for this game: ");
@@ -54,10 +51,6 @@ public class PlayBlackjack {
         
         // NEW HAND BETTING AND DEALING ////////////////////////////////////////
         do{
-            
-            System.out.println("--------------------------------------------------------------------------------");
-            System.out.println(" NEW HAND BETTING DEALING ");
-
             //loop through all players //bet amount? //decrease balance //create empty hand
             for (Player p : blackjack.getPlayers()) {
                 if(p instanceof BlackjackDealer){
@@ -96,22 +89,14 @@ public class PlayBlackjack {
                     blackjack.hit(player.getHands().get(0));
                 }
             }
-
-
-            System.out.print("\n end of NEW HAND BETTING DEALING \n"+ blackjack +"\n");//testing
-
-
-
-
+            
+            
             // BEFORE FIRST TURN ///////////////////////////////////////////////////
-
-
-            System.out.println("--------------------------------------------------------------------------------");
-            System.out.println(" BEFORE FIRST TURN ");
 
             //check dealer hand for possible natural
             boolean insuranceRound = false;
 
+            //segregate dealer object for easier use
             BlackjackDealer dealer = null;
             BlackjackCard visibleCard = null;
             try {
@@ -166,14 +151,8 @@ public class PlayBlackjack {
             }
 
 
-
-            System.out.print("\n end of BEFORE FIRST TURN \n"+ blackjack +"\n");//testing
-
+            
             // PLAYER TURNS ////////////////////////////////////////////////////////
-
-
-            System.out.println("--------------------------------------------------------------------------------");
-            System.out.println(" PLAYER TURNS");
 
             //loop through every player
             for (Player o : blackjack.getPlayers()) {
@@ -207,7 +186,9 @@ public class PlayBlackjack {
                     //downcast to BlackjackPlayer
                     BlackjackPlayer player = (BlackjackPlayer)o;
                     //loop through every hand
-                    for (BlackjackHand hand : player.getHands()) {
+                    //for (BlackjackHand hand : player.getHands()) {
+                    for (int i = 0; i < player.getHands().size(); i++) {
+                        BlackjackHand hand = player.getHands().get(i);
 
                         //show player's current hand
                         System.out.println(player.getPlayerID() +" ($"+ player.getBalance() +"): "+ hand);
@@ -232,7 +213,7 @@ public class PlayBlackjack {
                                 try {
                                     switch (userAction) {
                                         //TODO add messages
-                                        case "stand": blackjack.stand(player, hand); 
+                                        case "stand":  
                                             System.out.println(player.getPlayerID() +" stands."); 
                                             continueHand = false; 
                                             break;
@@ -267,14 +248,9 @@ public class PlayBlackjack {
             }//end of players loop
 
 
-            System.out.print("\n end of PLAYER TURNS \n"+ blackjack +"\n");//testing
-
 
 
             // SETTLEMENT //////////////////////////////////////////////////////////
-
-            System.out.println("--------------------------------------------------------------------------------");
-            System.out.println(" SETTLEMENT ");     
 
     //        BlackjackDealer dealer = null;
     //        try {
@@ -287,12 +263,12 @@ public class PlayBlackjack {
             BlackjackHand dealerHand = dealer.getHands().get(0);
 
             //loop through every player
-            for (Player o : blackjack.getPlayers()) {
-                if (o instanceof BlackjackDealer) {
+            for (Player p : blackjack.getPlayers()) {
+                if (p instanceof BlackjackDealer) {
                 //do nothing for dealer
                 }else{
                     //downcast to BlackjackPlayer
-                    BlackjackPlayer player = (BlackjackPlayer)o;
+                    BlackjackPlayer player = (BlackjackPlayer)p;
                     //loop through every hand
                     for (BlackjackHand hand : player.getHands()) {
 
@@ -346,10 +322,20 @@ public class PlayBlackjack {
                 }//end of if-dealer
             }//end of players loop
 
+            
+            
+            //remove all hands from player
+            for (Player p : players) {
+                BlackjackPlayer player = (BlackjackPlayer)p;
+                player.getHands().clear();
+            }
+            
+            //prompt to play again
 
-        }while(readUserBoolean("Play again (y/n)?"));        
+        }while(readUserBoolean("Play again (y/n)?"));
         
-        
+        //exit the application
+        System.exit(0);
     }//end of main()
     
     
@@ -360,7 +346,7 @@ public class PlayBlackjack {
      * prints a formatted table of all players' hands, with an indicator of the 
      * hand being played currently
      */
-    private static void printCurrentTable() {
+    private static void printCurrentTable(BlackjackHand currentHand) {
 /*
 jack ($90.00):
 	      20  [K♣][9♠]            $10.00 

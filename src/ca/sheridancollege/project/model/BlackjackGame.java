@@ -107,8 +107,7 @@ public class BlackjackGame extends Game{
             hand.setBet(hand.getBet() * 2);
             //hit
             this.hit(hand);
-            //stand
-            this.stand(player, hand);
+            //player should now stand
         }
     }
     
@@ -137,20 +136,22 @@ public class BlackjackGame extends Game{
                 throw new Exception("something failed during split pair: hand values aren't equal");
             }
             //get a new card for each hand right away
-            this.hit(hand);
-            this.hit(newHand);
+            this.hit(hand); System.out.println("new hand "+ hand +"   size: "+ hand.showCards().size() );
+            this.hit(newHand); System.out.println("NEW new hand "+ newHand +"   size: "+ newHand.showCards().size() );
             //now both hands should have two cards each
-            if (hand.showCards().size() == 2 && newHand.showCards().size() == 2) {
+            if (  (hand.showCards().size() != 2) || (newHand.showCards().size() != 2)  ) {
                 throw new Exception("something failed during split pair: hands aren't both two cards each");
-                
+                //this exception is being thrown even when both hands size() == 2
             }
         }
-        this.hit(hand);
+
     }
     
+    /*
     public void stand(BlackjackPlayer player, BlackjackHand hand) {
         //global flag? just part of the controller?
     }
+    */
     
 
 }//end of class BlackjackGame()
