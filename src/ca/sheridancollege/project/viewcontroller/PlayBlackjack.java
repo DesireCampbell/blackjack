@@ -186,7 +186,11 @@ public class PlayBlackjack {
                     //downcast to BlackjackPlayer
                     BlackjackPlayer player = (BlackjackPlayer)o;
                     //loop through every hand
-                    //for (BlackjackHand hand : player.getHands()) {
+                    //for (BlackjackHand hand : player.getHands()) { 
+                    /* using a for each loop can lead to a ConcurrentModificationError 
+                     * when splitPair() is called, because it changes the arrayList 
+                     * that's being used for the iterator. Regular for loop resolves 
+                     * this by checking list.size() before each loop.  */
                     for (int i = 0; i < player.getHands().size(); i++) {
                         BlackjackHand hand = player.getHands().get(i);
 
