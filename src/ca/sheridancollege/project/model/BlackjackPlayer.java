@@ -2,15 +2,15 @@ package ca.sheridancollege.project.model;
 
 import java.util.ArrayList;
 
-public class BlackjackPlayer extends Player{
+public class BlackjackPlayer extends Player {
 
-	private ArrayList<BlackjackHand> hands;
-    //private int currentHandIndex = 0;
-	private double balance = 0.0;
+    private ArrayList<BlackjackHand> hands;
+    private double balance = 0.0;
 
     /**
      * Constructor for Blackjack Player
-     * @param name 
+     *
+     * @param name
      */
     public BlackjackPlayer(String name) {
         super(name);
@@ -18,33 +18,22 @@ public class BlackjackPlayer extends Player{
         this.balance = 100.0;
         //initialize hands
         hands = new ArrayList<BlackjackHand>();
-        
+
     }
-    
-    
-    
+
     /**
      * Get all player hands as ArrayList of Hands
-     * @return 
+     *
+     * @return
      */
-	public ArrayList<BlackjackHand> getHands() {
-		return this.hands;
-	}
-
-
-    /*
-	public BlackjackHand getCurrentHand() {
-		return this.hands.get(currentHandIndex);
-	}
-
-	public BlackjackHand getHandAtIndex(int index) {
-		return this.hands.get(index);
+    public ArrayList<BlackjackHand> getHands() {
+        return this.hands;
     }
-    */
-    
+
     /**
      * Add a new hand to the player
-     * @param hand 
+     *
+     * @param hand
      */
     public void addHand(BlackjackHand hand) {
         if (hand == null) {
@@ -53,87 +42,41 @@ public class BlackjackPlayer extends Player{
         this.getHands().add(hand);
     }
 
-    
-    /*
-    public int getCurrentHandIndex() {
-        return currentHandIndex;
-    }
-
-    public void setCurrentHandIndex(int newHandIndex) {
-        if (newHandIndex < 0 || newHandIndex >= this.hands.size()) {
-            throw new IndexOutOfBoundsException("ERROR: Requested hand index "
-                    + newHandIndex +" does not exist");
-        }else{
-            this.currentHandIndex = newHandIndex;    
-        }
-    }
-    
-    public void setToNextHandIndex() {
-        setCurrentHandIndex(currentHandIndex + 1);
-    }
-    */
-    
-    
     /**
-     * obtains a new card
+     *
+     * @return
      */
-    /*
-    public void getCard() {
-        //find dealer object
-        //call dealer.dealCard()
-    }
-    */
-
-
-    /**
-     * 
-     * @return 
-     */
-	public double getBalance() {
+    public double getBalance() {
         return this.balance;
-	}
+    }
 
-	/**
-	 * 
-	 * @param balance
-	 */
-	public void setBalance(double balance) {
+    /**
+     *
+     * @param balance
+     */
+    public void setBalance(double balance) {
         if (balance < 0) {
             throw new IllegalArgumentException("ERROR setting new balance for "
-                    + "player "+ this.getPlayerID() +": balance cannot be "
-                            + "negative" );
+                    + "player " + this.getPlayerID() + ": balance cannot be "
+                    + "negative");
         }
         //round DOWN to nearest cent
-        balance = (int)(balance * 100)/100.0;
-		this.balance = balance;
-	}
-
-    @Override
-    public void play() {
-        
+        balance = (int) (balance * 100) / 100.0;
+        this.balance = balance;
     }
-    
-    
-    
 
-    
-
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
-        //1234567890123456789012345678901234567890
-        //player name ($000.00):  
-        // hands \n
-        //----------------------------------------
-        
-        //A player is made from a Name, a balance, and his hands:
-        String s = String.format("%s ($%.2f):"+"\n", this.getPlayerID(), this.getBalance());
-        for (BlackjackHand hand : this.getHands()) {
-            s += hand +"\n";
-        }
-        s += "----------------------------------------";
-        return s;
+        return String.format("%s ($%.2f)", this.getPlayerID(), this.getBalance());
     }
-    
-    
 
+    //moved to controller to segregate class duties
+    @Override
+    public void play() {
+
+    }
 }

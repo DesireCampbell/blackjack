@@ -17,6 +17,9 @@ import java.util.logging.Logger;
  */
 public class BlackjackGame extends Game{
 
+    /**
+     * 
+     */
     public BlackjackGame() {
         //set the name of the game in the parent object
         super("Blackjack");
@@ -26,6 +29,7 @@ public class BlackjackGame extends Game{
     /**
      * Returns the Dealer player
      * @return the Dealer player, or null if no dealer found.
+     * @throws Exception 
      */
     public BlackjackDealer getDealer() throws Exception {
         //The Dealer should be last player in the list, so we'll iterate 
@@ -39,21 +43,17 @@ public class BlackjackGame extends Game{
     }
 
 
-    /**
-     * Initiates basic game loop.
-     */
+//unused, moved to controller
     @Override
     public void play() {
 
-        //
     }
-
+//unused, moved to controller
     @Override
     public void declareWinner() {
         
     }
 
-    //TODO: instead of pulling toString()s from each object, create single table method for whole game (also for each player?)
     /**
      * 
      * @return 
@@ -79,7 +79,8 @@ public class BlackjackGame extends Game{
     
     
     /**
-     * The four options for a player's turn HIT, DOUBLE, SPLIT, STAND
+     * 
+     * @param hand 
      */
     public void hit(BlackjackHand hand) {
         try {
@@ -90,6 +91,12 @@ public class BlackjackGame extends Game{
         }
     }
     
+    /**
+     * 
+     * @param player
+     * @param hand
+     * @throws Exception 
+     */
     public void doubleDown(BlackjackPlayer player, BlackjackHand hand) throws Exception {
         if (hand.showCards().size() > 2) {
             //must have only two cards in hand
@@ -111,6 +118,12 @@ public class BlackjackGame extends Game{
         }
     }
     
+    /**
+     * 
+     * @param player
+     * @param hand
+     * @throws Exception 
+     */
     public void splitPair(BlackjackPlayer player, BlackjackHand hand) throws Exception {
         //player splits hand into two hands
         if (hand.showCards().size() > 2) {
@@ -146,12 +159,5 @@ public class BlackjackGame extends Game{
         }
 
     }
-    
-    /*
-    public void stand(BlackjackPlayer player, BlackjackHand hand) {
-        //global flag? just part of the controller?
-    }
-    */
-    
 
 }//end of class BlackjackGame()
