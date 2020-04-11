@@ -15,6 +15,7 @@ public class BlackjackDealer extends BlackjackPlayer {
         
     }
     
+    /* this will probably be unused / set to private   */
 	public BlackjackPack getPack() {
 		return this.pack;
 	}
@@ -27,6 +28,11 @@ public class BlackjackDealer extends BlackjackPlayer {
 		this.pack = pack;
 	}
     
+    /**
+     * Takes the first card from the Pack and adds it to the specified players'
+     * current hand.
+     * @param player the player receiving the card
+     */
     public BlackjackCard dealCard() {
         //remove the first card from the pack and return it.
         return (BlackjackCard)(this.pack.showCards().remove(0));
@@ -40,8 +46,17 @@ public class BlackjackDealer extends BlackjackPlayer {
 
     @Override
     public String toString() {
-        //A Dealer is made from a Name, his hand:
-        String s = this.getPlayerID() +": "+ this.getCurrentHand();
+        //1234567890123456789012345678901234567890
+        //player name ($000.00):  
+        //00 [A♥][5♥][10♥][3♥] $000.00 ($00.00)
+        //----------------------------------------
+
+        //A Dealer doesn't need to show balance
+        String s = this.getPlayerID() +":"+"\n";
+        for (BlackjackHand hand : this.getHands()) {
+            s += hand +"\n";
+        }
+        s += "----------------------------------------";
         return s;
     }
      

@@ -53,7 +53,8 @@ public class BlackjackCard extends Card {
      */
     @Override
     public String toString() {
-        return this.rank + " of " + this.suit;
+        //return this.rank + " of " + this.suit; //long names
+        return this.rank.getShortName() + this.suit.getSymbol(); //short name
     }
 
     /**

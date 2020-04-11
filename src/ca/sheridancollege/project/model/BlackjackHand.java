@@ -95,11 +95,61 @@ public class BlackjackHand extends GroupOfCards{
 
     @Override
     public String toString() {
-        //A hand is cards, total value, bet and insurance bet
-        return String.format("%s %d $%.2f $%.2f", 
-                this.showCards(), this.getValue(), 
-                this.getBet(), this.getInsuranceBet());
+        //1234567890123456789012345678901234567890
+        //player name ($000.00):  
+        //00 [A♥][5♥][10♥][3♥] $000.00 ($00.00)
+        //----------------------------------------
+
+        //A hand is total value, individual cards, bet and insurance bet
+        
+        //value (two digits)
+        String s = String.format("\t%-2d  ", this.getValue());
+        
+        // + all cards
+        for (Card card : this.showCards()) {
+            s += "["+ card +"]";
+        }
+        
+        //only show bets if they are greater than $0
+        if (this.getBet() > 0) {
+            s += String.format("    $%.2f ",this.getBet());
+        }
+        if (this.getInsuranceBet() > 0) {
+            s += String.format("($%.2f)",this.getInsuranceBet());
+        }
+        
+        return s;
     }
+
+
+    /**
+     * Compares hand to another hand, returns true if both hands have same value
+     * or both hands have bust.
+     * @param otherHand
+     * @return 
+     */
+    public boolean equals(BlackjackHand otherHand) {
+        if (this == otherHand) {
+            //same mem ref
+            return true;
+        }
+        if (otherHand == null) {
+            //otherHand is null
+            return false;
+        }
+        //compare values
+        if (this.getValue() > 21 && otherHand.getValue() > 21) {
+            return true;
+        }else if (this.getValue() != otherHand.getValue()) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+    
+    
+    
     
     
     
