@@ -5,21 +5,24 @@
 
     Description
     [Description about the class]
-*/
+ */
 package ca.sheridancollege.project.model;
 
 import java.util.ArrayList;
 
 /**
- * 
+ *
  * @author Desire Richards-Campbell (991571959)
  */
-public class BlackjackHand extends GroupOfCards{
+public class BlackjackHand extends GroupOfCards {
 
     private double bet;
     private double insuranceBet;
-    
-       
+
+    /**
+     *
+     * @param bet
+     */
     public BlackjackHand(double bet) {
         super(0);
         setBet(bet);
@@ -27,40 +30,58 @@ public class BlackjackHand extends GroupOfCards{
 
     /**
      * Add one card to the cards list
-     * @param newCard 
+     *
+     * @param newCard
      */
     public void addCard(Card newCard) {
         this.showCards().add(newCard);
     }
-    
 
+    /**
+     *
+     * @return
+     */
     public double getBet() {
         return bet;
     }
 
+    /**
+     *
+     * @param bet
+     */
     public void setBet(double bet) {
-        bet = (int)(bet * 100)/100.0;
+        bet = (int) (bet * 100) / 100.0;
         if (bet < 0) {
             throw new IllegalArgumentException("ERROR bet amount cannot be negative");
-        }else{
+        } else {
             this.bet = bet;
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public double getInsuranceBet() {
         return insuranceBet;
     }
 
+    /**
+     *
+     * @param insuranceBet
+     */
     public void setInsuranceBet(double insuranceBet) {
-        insuranceBet = (int)(insuranceBet * 100)/100.0;
+        insuranceBet = (int) (insuranceBet * 100) / 100.0;
         if (insuranceBet < 0) {
             throw new IllegalArgumentException("ERROR insurance bet amount cannot be negative");
-        }else{
+        } else {
             this.insuranceBet = insuranceBet;
         }
     }
+
     /**
      * Calculates the total value of the hand, including high/low ACEs.
+     *
      * @return The total value of the hand currently, as int.
      */
     public int getValue() {
@@ -69,15 +90,15 @@ public class BlackjackHand extends GroupOfCards{
         //count the number of ACEs for later
         int numberOfAces = 0;
         //sum the (minimum) value of all cards
-        try{
+        try {
             for (Card card : this.showCards()) {
-                total += ((BlackjackCard)card).getRank().getValue();
+                total += ((BlackjackCard) card).getRank().getValue();
                 //count number of ACEs
-                if ( ((BlackjackCard)card).getRank() == Rank.ACE ) {
+                if (((BlackjackCard) card).getRank() == Rank.ACE) {
                     numberOfAces++;
                 }
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             //catch exception for empty arraylist
         }
 
@@ -93,68 +114,17 @@ public class BlackjackHand extends GroupOfCards{
         return total;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
-        //1234567890123456789012345678901234567890
-        //player name ($000.00):  
-        //00 [A♥][5♥][10♥][3♥] $000.00 ($00.00)
-        //----------------------------------------
-
-        //A hand is total value, individual cards, bet and insurance bet
-        
-        //value (two digits)
-        String s = String.format("\t%-2d  ", this.getValue());
-        
-        // + all cards
+        String s = "";
         for (Card card : this.showCards()) {
-            s += "["+ card +"]";
+            s += "[" + card + "]";
         }
-        
-        //only show bets if they are greater than $0
-        if (this.getBet() > 0) {
-            s += String.format("    $%.2f ",this.getBet());
-        }
-        if (this.getInsuranceBet() > 0) {
-            s += String.format("($%.2f)",this.getInsuranceBet());
-        }
-        
         return s;
     }
-
-
-    /**
-     * Compares hand to another hand, returns true if both hands have same value
-     * or both hands have bust.
-     * @param otherHand
-     * @return 
-     */
-    public boolean equals(BlackjackHand otherHand) {
-        if (this == otherHand) {
-            //same mem ref
-            return true;
-        }
-        if (otherHand == null) {
-            //otherHand is null
-            return false;
-        }
-        //compare values
-        if (this.getValue() > 21 && otherHand.getValue() > 21) {
-            return true;
-        }else if (this.getValue() != otherHand.getValue()) {
-            return false;
-        }
-        return true;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
 }//end of class BlackjackHand()
