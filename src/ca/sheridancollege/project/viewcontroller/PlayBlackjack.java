@@ -514,7 +514,7 @@ printCurrentTable(blackjack.getPlayers(),hand); //print all players
      * @param value the value to be rounded down to 1/100 place
      * @return given value truncated to two decimal places
      */
-    private static double roundToCent(double value) {
+    static double roundToCent(double value) {
         return (int)(value * 100) / 100.0;
     }
 

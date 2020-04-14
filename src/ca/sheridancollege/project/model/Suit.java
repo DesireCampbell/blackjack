@@ -16,10 +16,10 @@ package ca.sheridancollege.project.model;
  */
 
 public enum Suit {
-	SPADES  ("Spades",  '♠'),
-    HEARTS  ("Hearts",  '♥'),
-	DIAMONDS("Diamonds",'♦'),
-	CLUBS   ("Clubs",   '♣');
+	SPADES  ("Spades",   '♠'),
+    HEARTS  ("Hearts",   '♥'),
+	DIAMONDS("Diamonds", '♦'),
+	CLUBS   ("Clubs",    '♣');
     
     private String name;
     private char symbol;
