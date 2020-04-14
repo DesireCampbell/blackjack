@@ -415,7 +415,8 @@ printCurrentTable(blackjack.getPlayers(),hand); //print all players
                         winnings -= hand.getBet();
                     }
 
-                    System.out.printf("%s wins $%.2f \n",player.getPlayerID(),winnings);
+                    System.out.printf("%s wins $%.2f \n ",player.getPlayerID(),winnings);
+                    System.out.printf("The new balance is: %s \n ",player.getBalance());
 
                 }//end of hands loop
             }//end of if-dealer
