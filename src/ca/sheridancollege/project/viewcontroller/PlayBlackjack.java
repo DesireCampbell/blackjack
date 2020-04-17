@@ -514,7 +514,7 @@ printCurrentTable(blackjack.getPlayers(),hand); //print all players
      * @param value the value to be rounded down to 1/100 place
      * @return given value truncated to two decimal places
      */
-    static double roundToCent(double value) {
+    public static double roundToCent(double value) {
         return (int)(value * 100) / 100.0;
     }
 
@@ -524,7 +524,7 @@ printCurrentTable(blackjack.getPlayers(),hand); //print all players
      * @param prompt
      * @return 
      */
-    private static String readUserLine(String prompt) {
+    public static String readUserLine(String prompt) {
         Scanner input = new Scanner(System.in);
         System.out.print(prompt);
         try {
@@ -541,7 +541,7 @@ printCurrentTable(blackjack.getPlayers(),hand); //print all players
      * @param prompt
      * @return 
      */
-    private static String readUserString(String prompt) {
+    public static String readUserString(String prompt) {
         Scanner input = new Scanner(System.in);
         System.out.print(prompt);
         try {
@@ -558,7 +558,7 @@ printCurrentTable(blackjack.getPlayers(),hand); //print all players
      * @param prompt
      * @return 
      */
-    private static int readUserInt(String prompt) {
+    public static int readUserInt(String prompt) {
         Scanner input = new Scanner(System.in);
         System.out.print(prompt);
         try {
@@ -575,7 +575,7 @@ printCurrentTable(blackjack.getPlayers(),hand); //print all players
      * @param prompt
      * @return 
      */
-    private static Double readUserDouble(String prompt) {
+    public static Double readUserDouble(String prompt) {
         Scanner input = new Scanner(System.in);
         System.out.print(prompt);
         try {
@@ -592,7 +592,7 @@ printCurrentTable(blackjack.getPlayers(),hand); //print all players
      * @param prompt
      * @return 
      */
-    private static Boolean readUserBoolean(String prompt) {
+    public static Boolean readUserBoolean(String prompt) {
         Scanner input = new Scanner(System.in);
         System.out.print(prompt);
         try {
